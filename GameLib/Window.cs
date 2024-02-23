@@ -51,6 +51,8 @@ namespace GameLib
         {
             Graphics g = e.Graphics;
             g.Clear(BGColor);
+
+            g.FillRectangle(new SolidBrush(Color.Red), 100, 100, 500, 300);
         }
     }
 }
