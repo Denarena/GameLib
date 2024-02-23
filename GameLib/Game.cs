@@ -55,6 +55,7 @@ namespace GameLib
 
         public static void OnUpdate()
         {
+
             user_UpdateFunc();
         }
     }

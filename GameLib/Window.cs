@@ -17,7 +17,7 @@ namespace GameLib
 
         public Window(Vector2 Size, String Title)
         {
-            Wind.Size = new Size(Size.x, Size.y);
+            Wind.Size = new Size((int)Size.x, (int)Size.y);
             Wind.Text = Title;
             Wind.Paint += Renderer;
 
