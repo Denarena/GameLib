@@ -31,7 +31,7 @@ namespace GameLib
 
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
         {
-            Console.WriteLine("Creating Window");
+            Log.Info("Creating Window");
             BGColor = BackGroundColor;
             Wind program = new Wind(Size, Title); 
         }

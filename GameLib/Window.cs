@@ -40,7 +40,15 @@ namespace GameLib
                     }
                     catch
                     {
-                        return;
+                        Log.Line(40);
+                        Log.Error("Window Closed Or Not Open");
+                        Log.Error("Restart Game To Reopen");
+                        Log.NewLine();
+                        Log.Info("Press any key to close...");
+
+                        Console.ReadKey();
+
+                        GameLoopThread.Abort();
                     }
                 }
             }

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="screen.cs">
       <SubType>Form</SubType>
     </Compile>

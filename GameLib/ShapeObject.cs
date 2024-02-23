@@ -17,6 +17,8 @@ namespace GameLib
         
         public ShapeObject(Vector2 size, Vector2 position, String name, Color color)
         {
+            Log.Debug("Creating Shape '" + name + "'");
+
             this.position = position;
             this.size = size;
             this.name = name;
