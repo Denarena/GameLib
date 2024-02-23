@@ -26,10 +26,5 @@ namespace GameLib
 
             Game.AddShape(this);
         }
-
-        public void Destroy()
-        {
-            Game.RemoveShape(this);
-        }
     }
 }

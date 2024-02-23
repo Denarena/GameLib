@@ -10,6 +10,7 @@ using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace GameLib
 {
@@ -25,8 +26,10 @@ namespace GameLib
             Objects.Add(shape);
         }
         public static void RemoveShape(ShapeObject shape)
-        {
+        {   
             Objects.Remove(shape);
+            Log.Debug("Removing Shape '" + shape.name + "'");
+            shape = null;
         }
 
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
