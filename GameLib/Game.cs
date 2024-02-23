@@ -17,6 +17,17 @@ namespace GameLib
         private static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
         public static Color BGColor;
 
+        private static List<ShapeObject> Objects = new List<ShapeObject>();
+
+        public static void AddShape(ShapeObject shape)
+        {
+            Objects.Add(shape);
+        }
+        public static void RemoveShape(ShapeObject shape)
+        {
+            Objects.Remove(shape);
+        }
+
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
         {
             Console.WriteLine("Creating Window");
