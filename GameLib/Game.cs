@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace GameLib
 {
@@ -19,17 +21,31 @@ namespace GameLib
         private static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
         public static Color BGColor;
 
-        public static List<ShapeObject> Objects = new List<ShapeObject>();
+        public static Vector2 CameraPosition = new Vector2();
+
+        public static List<ShapeObject> shpObjects = new List<ShapeObject>();
+        public static List<SpriteObject> sprObjects = new List<SpriteObject>();
 
         public static void AddShape(ShapeObject shape)
         {
-            Objects.Add(shape);
+            shpObjects.Add(shape);
         }
         public static void RemoveShape(ShapeObject shape)
         {   
-            Objects.Remove(shape);
+            shpObjects.Remove(shape);
             Log.Debug("Removing Shape '" + shape.name + "'");
             shape = null;
+        }
+
+        public static void AddSprite(SpriteObject sprite)
+        {
+            sprObjects.Add(sprite);
+        }
+        public static void RemoveSprite(SpriteObject sprite)
+        {
+            sprObjects.Remove(sprite);
+            Log.Debug("Removing Sprite '" + sprite.name + "'");
+            sprite = null;
         }
 
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
@@ -41,9 +57,9 @@ namespace GameLib
 
         public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc)
         {
-           user_loadFunc = loadFunc;
-           user_DrawFunc = DrawFunc;
-           user_UpdateFunc = UpdateFunc;
+            user_loadFunc = loadFunc;
+            user_DrawFunc = DrawFunc;
+            user_UpdateFunc = UpdateFunc;
         }
 
         public static void OnLoad()
@@ -58,8 +74,17 @@ namespace GameLib
 
         public static void OnUpdate()
         {
-
+            Window.SetCamPosition(CameraPosition);
             user_UpdateFunc();
+        }
+
+        public virtual void GetKeyUp(KeyEventArgs e)
+        {
+
+        }
+        public virtual void GetKeyDown(KeyEventArgs e)
+        {
+
         }
     }
 
