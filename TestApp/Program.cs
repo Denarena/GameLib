@@ -19,6 +19,12 @@ namespace TestApp
         {
             Game.Functions(onLoad, onDraw, onUpdate);
             Game.LoadWindow(new Vector2(900,500), "TestApp", Color.Azure);
+
+            ShapeObject cube1;
+
+            cube1 = new ShapeObject(new Vector2(100, 150), new Vector2(1, 200), "Cuboid1", Color.Black);
+
+            Game.AddShape(new ShapeObject(new Vector2(500, 300), new Vector2(300, 120), "Cuboid2", Color.Red));
         }
 
         public static void onLoad()

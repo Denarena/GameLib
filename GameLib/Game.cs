@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace GameLib
 {
@@ -19,9 +20,8 @@ namespace GameLib
 
         public static List<ShapeObject> Objects = new List<ShapeObject>();
 
-        public static void AddShape(float scale, Vector2 position, Vector2 size, String name, Color color)
+        public static void AddShape(ShapeObject shape)
         {
-            ShapeObject shape = new ShapeObject(scale, position, size, name, color);
             Objects.Add(shape);
         }
         public static void RemoveShape(ShapeObject shape)

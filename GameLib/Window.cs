@@ -45,8 +45,15 @@ namespace GameLib
                 }
             }
 
+            Thread WindowThread = new Thread(new ThreadStart(RunWindow));
+            WindowThread.Start();
+        }
+
+        private void RunWindow()
+        {
             Application.Run(Wind);
         }
+
         private void Renderer(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -54,7 +61,7 @@ namespace GameLib
 
             foreach(ShapeObject shape in Game.Objects)
             {
-                g.FillRectangle(new SolidBrush(shape.color), shape.size.x, shape.size.y, shape.position.x, shape.position.y);
+                g.FillRectangle(new SolidBrush(shape.color), shape.position.x, shape.position.y, shape.size.x, shape.size.y);
             }
 
         }
