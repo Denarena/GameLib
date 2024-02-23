@@ -21,7 +21,7 @@ namespace GameLib
         {
             Console.WriteLine("Creating Window");
             BGColor = BackGroundColor;
-            Wind program = new Wind(Size, Title);
+            Wind program = new Wind(Size, Title); 
         }
 
         public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc)
