@@ -13,14 +13,16 @@ namespace GameLib
     {
         public float scale;
         public Vector2 position, size;
-        String name;
+        public String name;
+        public Color color;
         
-        public ShapeObject(float scale, Vector2 position, Vector2 size, String name)
+        public ShapeObject(float scale, Vector2 position, Vector2 size, String name, Color color)
         {
             this.scale = scale;
             this.position = position;
             this.size = size;
             this.name = name;
+            this.color = color;
 
             Game.AddShape(this);
         }

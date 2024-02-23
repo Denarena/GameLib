@@ -17,10 +17,11 @@ namespace GameLib
         private static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
         public static Color BGColor;
 
-        private static List<ShapeObject> Objects = new List<ShapeObject>();
+        public static List<ShapeObject> Objects = new List<ShapeObject>();
 
-        public static void AddShape(ShapeObject shape)
+        public static void AddShape(float scale, Vector2 position, Vector2 size, String name, Color color)
         {
+            ShapeObject shape = new ShapeObject(scale, position, size, name, color);
             Objects.Add(shape);
         }
         public static void RemoveShape(ShapeObject shape)
