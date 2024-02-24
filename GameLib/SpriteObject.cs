@@ -15,7 +15,7 @@ namespace GameLib
 
         public SpriteObject(Vector2 size, Vector2 position, String directory, String name)
         {
-            Log.Debug("Creating Sprite '" + name + "'");
+            Log.Debug("Creating Sprite Object '" + name + "' At (" + position.x + "," + position.y + ")");f
 
             this.position = position;
             this.size = size;

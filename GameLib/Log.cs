@@ -8,6 +8,12 @@ namespace GameLib
 {
     public class Log
     {
+        public static void Regular(object msg)
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("[] " + msg);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
         public static void Info(object msg)
         {

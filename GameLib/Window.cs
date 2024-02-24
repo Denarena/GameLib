@@ -69,13 +69,11 @@ namespace GameLib
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            
             Game.GetKeyUp(e);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            
             Game.GetKeyDown(e);
         }
 

@@ -18,7 +18,7 @@ namespace GameLib
 {
     public class Game
     {
-        internal static Action user_loadFunc, user_DrawFunc, user_UpdateFunc, user_GetKeyUp, user_GetKeyDown;
+        internal static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
         public static Color BGColor;
 
         public static Keys KeyPresses;
@@ -52,18 +52,17 @@ namespace GameLib
 
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
         {
-            Log.Info("Creating Window");
+            Log.Debug("Creating Window");
             BGColor = BackGroundColor;
             Wind program = new Wind(Size, Title); 
         }
 
-        public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc, Action GetKeyUp, Action GetKeyDown)
+        public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc)
         {
             user_loadFunc = loadFunc;
             user_DrawFunc = DrawFunc;
             user_UpdateFunc = UpdateFunc;
-            user_GetKeyUp = GetKeyUp;
-            user_GetKeyDown = GetKeyDown;
+
         }
 
         internal static void OnLoad()

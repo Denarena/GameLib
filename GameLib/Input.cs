@@ -10,15 +10,25 @@ namespace GameLib
     public class Input
     {
 
-        public static bool Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H, J, K, L, Z, X, C, V, B, N, M, UP, DOWN, LEFT, RIGHT;
+        public static bool Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H, J, K, L, Z, X, C, V, B, N, M, UP, DOWN, LEFT, RIGHT, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, ZERO;
 
         internal static void GetKeyUp()
         {
+            if (Game.KeyPresses == Keys.D0) { ZERO = false; }
+            if (Game.KeyPresses == Keys.D1) { ONE = false; }
+            if (Game.KeyPresses == Keys.D2) { TWO = false; }
+            if (Game.KeyPresses == Keys.D3) { THREE = false; }
+            if (Game.KeyPresses == Keys.D4) { FOUR = false; }
+            if (Game.KeyPresses == Keys.D5) { FIVE = false; }
+            if (Game.KeyPresses == Keys.D6) { SIX = false; }
+            if (Game.KeyPresses == Keys.D7) { SEVEN = false; }
+            if (Game.KeyPresses == Keys.D8) { EIGHT = false; }
+            if (Game.KeyPresses == Keys.D9) { NINE = false; }
+
             if (Game.KeyPresses == Keys.Up) { UP = false; }
             if (Game.KeyPresses == Keys.Down) { DOWN = false; }
             if (Game.KeyPresses == Keys.Left) { LEFT = false; }
             if (Game.KeyPresses == Keys.Right) { RIGHT = false; }
-
 
             if (Game.KeyPresses == Keys.Q) { Q = false; }
             if (Game.KeyPresses == Keys.W) { W = false; }
@@ -76,6 +86,22 @@ namespace GameLib
             if (Game.KeyPresses == Keys.B) { B = true; }
             if (Game.KeyPresses == Keys.N) { N = true; }
             if (Game.KeyPresses == Keys.M) { M = true; }
+
+            if (Game.KeyPresses == Keys.D0) { ZERO = true; }
+            if (Game.KeyPresses == Keys.D1) { ONE = true; }
+            if (Game.KeyPresses == Keys.D2) { TWO = true; }
+            if (Game.KeyPresses == Keys.D3) { THREE = true; }
+            if (Game.KeyPresses == Keys.D4) { FOUR = true; }
+            if (Game.KeyPresses == Keys.D5) { FIVE = true; }
+            if (Game.KeyPresses == Keys.D6) { SIX = true; }
+            if (Game.KeyPresses == Keys.D7) { SEVEN = true; }
+            if (Game.KeyPresses == Keys.D8) { EIGHT = true; }
+            if (Game.KeyPresses == Keys.D9) { NINE = true; }
+
+            if (Game.KeyPresses == Keys.Up) { UP = true; }
+            if (Game.KeyPresses == Keys.Down) { DOWN = true; }
+            if (Game.KeyPresses == Keys.Left) { LEFT = true; }
+            if (Game.KeyPresses == Keys.Right) { RIGHT = true; }
         }
     }
 }

@@ -23,18 +23,18 @@ namespace TestApp
 
         static string[,] map =
         {
-            {".",".",".",".",".",".","."},
-            {".",".",".",".",".",".","."},
-            {".",".",".",".","g",".","."},
-            {".",".","g",".","g",".","."},
             {"g","g","g","g","g","g","g"},
-            {".",".",".",".",".",".","."},
-            {".",".",".",".",".",".","."},
+            {"g",".",".",".",".",".","g"},
+            {"g",".","g",".","g","g","g"},
+            {"g",".","g",".",".",".","."},
+            {"g",".","g","g","g","g","g"},
+            {"g",".",".",".",".",".","g"},
+            {"g","g","g","g",".","g","g"},
         };
 
         public static void Main(string[] args)
         {
-            Game.Functions(onLoad, onDraw, onUpdate, GetKeyUp, GetKeyDown);
+            Game.Functions(onLoad, onDraw, onUpdate);
             Game.LoadWindow(new Vector2(900, 500), "TestApp", Color.Azure);
         }
 
@@ -48,22 +48,13 @@ namespace TestApp
                 {
                     if (map[j, i] == "g")
                     {
-                        new SpriteObject(new Vector2(50, 50), new Vector2(i * 50, j * 50), "Assets/Wall.png", "Wall");
+                        new ShapeObject(new Vector2(50, 50), new Vector2(i * 50, j * 50), "Wall", Color.DarkCyan);
                     }
                 }
             }
         }
 
         static SpriteObject player = new SpriteObject(new Vector2(32, 36), new Vector2(50, 50), "Assets/Player.png", "Player");
-        public static void GetKeyUp()
-        {
-            
-        }
-
-        public static void GetKeyDown()
-        {
-            
-        }
 
         public static void onDraw()
         {
@@ -71,8 +62,6 @@ namespace TestApp
         }
         public static void onUpdate()
         {
-            
-
             if (Input.W)
             {
                 player.position.y -= 2;
