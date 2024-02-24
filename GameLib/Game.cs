@@ -18,13 +18,15 @@ namespace GameLib
 {
     public class Game
     {
-        private static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
+        internal static Action user_loadFunc, user_DrawFunc, user_UpdateFunc, user_GetKeyUp, user_GetKeyDown;
         public static Color BGColor;
+
+        public static Keys KeyPresses;
 
         public static Vector2 CameraPosition = new Vector2();
 
-        public static List<ShapeObject> shpObjects = new List<ShapeObject>();
-        public static List<SpriteObject> sprObjects = new List<SpriteObject>();
+        internal static List<ShapeObject> shpObjects = new List<ShapeObject>();
+        internal static List<SpriteObject> sprObjects = new List<SpriteObject>();
 
         public static void AddShape(ShapeObject shape)
         {
@@ -55,41 +57,50 @@ namespace GameLib
             Wind program = new Wind(Size, Title); 
         }
 
-        public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc)
+        public static void Functions(Action loadFunc, Action DrawFunc, Action UpdateFunc, Action GetKeyUp, Action GetKeyDown)
         {
             user_loadFunc = loadFunc;
             user_DrawFunc = DrawFunc;
             user_UpdateFunc = UpdateFunc;
+            user_GetKeyUp = GetKeyUp;
+            user_GetKeyDown = GetKeyDown;
         }
 
-        public static void OnLoad()
+        internal static void OnLoad()
         {
             user_loadFunc();
         }
 
-        public static void OnDraw()
+        internal static void OnDraw()
         {
             user_DrawFunc();
         }
 
-        public static void OnUpdate()
+        internal static void OnUpdate()
         {
+            
             Window.SetCamPosition(CameraPosition);
             user_UpdateFunc();
         }
 
-        public virtual void GetKeyUp(KeyEventArgs e)
-        {
+        
 
+        internal static void GetKeyUp(KeyEventArgs e)
+        {
+            KeyPresses = e.KeyCode;
+            user_GetKeyUp();
         }
-        public virtual void GetKeyDown(KeyEventArgs e)
+        internal static void GetKeyDown(KeyEventArgs e)
         {
-
+            KeyPresses = e.KeyCode;
+            user_GetKeyDown();
         }
     }
 
-    public class Wind : Window 
+    internal class Wind : Window 
     { 
         public Wind(Vector2 Size, String Title) : base(new Vector2(Size.x, Size.y), Title)  { } 
+
+
     }
 }
