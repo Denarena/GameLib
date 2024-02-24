@@ -18,9 +18,6 @@ namespace TestApp
     class Program
     {
 
-        public static bool left, right, up, down;
-        static Vector2 lastPos = new Vector2();
-
         static string[,] map =
         {
             {"g","g","g","g","g","g","g"},
@@ -59,9 +56,9 @@ namespace TestApp
             }
         }
 
-        static SpriteObject player = new SpriteObject(new Vector2(27.2f, 30.6f), new Vector2(200, 300), "Assets/Player.png", "Player");
-        
-        
+        static SpriteObject player = new SpriteObject(new Vector2(27.2f, 30.6f), new Vector2(210, 300), "Assets/Player.png", "Player");
+
+        static float speed = 2f;
 
         public static void onDraw()
         {
@@ -69,34 +66,23 @@ namespace TestApp
         }
         public static void onUpdate()
         {
-            if (Input.W)
+            int hMove = Game.toInt(Input.D) - Game.toInt(Input.A);
+            float hSpd = hMove * speed;
+            int vMove = Game.toInt(Input.W) - Game.toInt(Input.S);
+            float vSpd = vMove * speed;
+
+            if (player.isColliding("Wall", new Vector2(player.position.x+hSpd,player.position.y)))
             {
-                player.position.y -= 2;
+                hSpd = 0;
             }
-            if (Input.S)
+            else if(player.isColliding("Wall", new Vector2(player.position.x, player.position.y - vSpd)))
             {
-                player.position.y += 2;
+                vSpd = 0;
             }
-            if (Input.A)
-            {
-                player.position.x -= 2;
-            }
-            if (Input.D)
-            {
-                player.position.x += 2;
-            }
-            
-            if(player.isColliding("Wall"))
-            {
-                player.position.x = lastPos.x;
-                player.position.y = lastPos.y;
-            }
-            else
-            {
-                lastPos.x = player.position.x;
-                lastPos.y = player.position.y;
-            }
-            if (player.isColliding("Collectable"))
+            player.position.x += hSpd;
+            player.position.y -= vSpd;
+
+            if (player.isColliding("Collectable", player.position))
             {
                 player.CollisionObject.Destroy();
             }

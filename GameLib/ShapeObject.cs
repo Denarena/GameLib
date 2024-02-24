@@ -27,7 +27,7 @@ namespace GameLib
             Game.AddShape(this);
         }
 
-        public bool isColliding(String name)
+        public bool isColliding(String name, Vector2 position)
         {
             foreach (SpriteObject b in Game.sprObjects)
             {

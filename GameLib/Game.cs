@@ -92,6 +92,13 @@ namespace GameLib
             KeyPresses = e.KeyCode;
             Input.GetKeyDown();
         }
+
+        public static int toInt(bool boolean)
+        {
+            int value = 0;
+            if (boolean) { value = 1; } else { value = 0; }
+            return value;
+        }
     }
 
     internal class Wind : Window 

@@ -94,9 +94,16 @@ namespace GameLib
             {
                 g.FillRectangle(new SolidBrush(shape.color), shape.position.x, shape.position.y, shape.size.x, shape.size.y);
             }
-            foreach (SpriteObject sprite in Game.sprObjects)
+            try
             {
-                g.DrawImage(sprite.sprite,sprite.position.x,sprite.position.y,sprite.size.x,sprite.size.y);
+                foreach (SpriteObject sprite in Game.sprObjects)
+                {
+                    g.DrawImage(sprite.sprite, sprite.position.x, sprite.position.y, sprite.size.x, sprite.size.y);
+                }
+            }
+            catch
+            {
+                Log.Error("Waiting...");
             }
         }
     }
