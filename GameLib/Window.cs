@@ -30,6 +30,7 @@ namespace GameLib
             Wind.Paint += Renderer;
             Wind.KeyDown += Window_KeyDown;
             Wind.KeyUp += Window_KeyUp;
+            Wind.MaximumSize = Wind.Size;
 
             Thread GameLoopThread = null;
 

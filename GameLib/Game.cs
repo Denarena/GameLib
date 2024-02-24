@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using System.Security.Policy;
 
 namespace GameLib
 {
@@ -33,9 +34,9 @@ namespace GameLib
             shpObjects.Add(shape);
         }
         public static void RemoveShape(ShapeObject shape)
-        {   
+        {
             shpObjects.Remove(shape);
-            Log.Debug("Removing Shape '" + shape.name + "'");
+            Log.Debug("Removing Shape Object '" + shape.name + "' At (" + shape.position.x + "," + shape.position.y + ")");
             shape = null;
         }
 
@@ -46,13 +47,13 @@ namespace GameLib
         public static void RemoveSprite(SpriteObject sprite)
         {
             sprObjects.Remove(sprite);
-            Log.Debug("Removing Sprite '" + sprite.name + "'");
+            Log.Debug("Removing Sprite Object '" + sprite.name + "' At (" + sprite.position.x + "," + sprite.position.y + ")");
             sprite = null;
         }
 
         public static void LoadWindow(Vector2 Size, String Title, Color BackGroundColor)
         {
-            Log.Debug("Creating Window");
+            Log.Info("Creating Window");
             BGColor = BackGroundColor;
             Wind program = new Wind(Size, Title); 
         }

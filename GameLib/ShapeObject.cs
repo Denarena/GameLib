@@ -17,7 +17,7 @@ namespace GameLib
         
         public ShapeObject(Vector2 size, Vector2 position, String name, Color color)
         {
-            Log.Debug("Creating Shape '" + name + "' At (" + position.x + "," + position.y + ")");
+            Log.Debug("Creating Shape Object '" + name + "' At (" + position.x + "," + position.y + ")");
 
             this.position = position;
             this.size = size;
@@ -25,6 +25,27 @@ namespace GameLib
             this.color = color;
 
             Game.AddShape(this);
+        }
+
+        public bool isColliding(String name)
+        {
+            foreach (SpriteObject b in Game.sprObjects)
+            {
+                if (b.name == name)
+                {
+                    if (position.x < b.position.x + b.size.x &&
+                        position.x + size.x > b.position.x &&
+                        position.y < b.position.y + b.size.y &&
+                        position.y + size.y > b.position.y) { return true; }
+                }
+            }
+
+            return false;
+        }
+
+        public void Destroy()
+        {
+            Game.RemoveShape(this);
         }
     }
 }
