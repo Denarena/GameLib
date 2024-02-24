@@ -57,17 +57,12 @@ namespace TestApp
         static SpriteObject player = new SpriteObject(new Vector2(32, 36), new Vector2(50, 50), "Assets/Player.png", "Player");
         public static void GetKeyUp()
         {
-            if (Game.KeyPresses == Keys.W) { up = false; Log.Info("Key W Up"); }
-            if (Game.KeyPresses == Keys.A) { left = false; Log.Info("Key W Up"); }
-            if (Game.KeyPresses == Keys.S) { down = false; Log.Info("Key W Up"); }
-            if (Game.KeyPresses == Keys.D) { right = false; Log.Info("Key W Up"); }
+            
         }
+
         public static void GetKeyDown()
         {
-            if (Game.KeyPresses == Keys.W) { up = true; Log.Info("Key W Down"); }
-            if (Game.KeyPresses == Keys.A) { left = true; Log.Info("Key W Down"); }
-            if (Game.KeyPresses == Keys.S) { down = true; Log.Info("Key W Down"); }
-            if (Game.KeyPresses == Keys.D) { right = true; Log.Info("Key W Down"); }
+            
         }
 
         public static void onDraw()
@@ -76,19 +71,21 @@ namespace TestApp
         }
         public static void onUpdate()
         {
-            if (up)
+            
+
+            if (Input.W)
             {
                 player.position.y -= 2;
             }
-            if (down)
+            if (Input.S)
             {
                 player.position.y += 2;
             }
-            if (left)
+            if (Input.A)
             {
                 player.position.x -= 2;
             }
-            if (right)
+            if (Input.D)
             {
                 player.position.x += 2;
             }

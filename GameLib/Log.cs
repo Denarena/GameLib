@@ -8,26 +8,27 @@ namespace GameLib
 {
     public class Log
     {
-        public static void Info(String msg)
+
+        public static void Info(object msg)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("[Info] " + msg);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void Debug(String msg)
+        public static void Debug(object msg)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[Debug] " + msg);
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void Error(String msg)
+        public static void Error(object msg)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("[Error] " + msg);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void Warning(String msg)
+        public static void Warning(object msg)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("[Warning] " + msg);

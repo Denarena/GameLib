@@ -78,29 +78,24 @@ namespace GameLib
 
         internal static void OnUpdate()
         {
-            
             Window.SetCamPosition(CameraPosition);
             user_UpdateFunc();
         }
 
-        
-
         internal static void GetKeyUp(KeyEventArgs e)
         {
             KeyPresses = e.KeyCode;
-            user_GetKeyUp();
+            Input.GetKeyUp();
         }
         internal static void GetKeyDown(KeyEventArgs e)
         {
             KeyPresses = e.KeyCode;
-            user_GetKeyDown();
+            Input.GetKeyDown();
         }
     }
 
     internal class Wind : Window 
     { 
         public Wind(Vector2 Size, String Title) : base(new Vector2(Size.x, Size.y), Title)  { } 
-
-
     }
 }
