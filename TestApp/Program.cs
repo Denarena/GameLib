@@ -20,13 +20,13 @@ namespace TestApp
 
         static string[,] map =
         {
-            {"g","g","g","g","g","g","g"},
-            {"g",".",".",".",".","c","g"},
-            {"g",".","g",".","g","g","g"},
-            {"g","c","g",".",".",".","."},
-            {"g",".","g","g","g","g","g"},
-            {"g",".",".",".",".","c","g"},
-            {"g","g","g","g",".","g","g"},
+            {".",".",".",".",".",".","."},
+            {".",".",".",".",".","c","."},
+            {".",".",".",".",".",".","."},
+            {".",".",".",".",".",".","."},
+            {".",".",".",".","g",".","."},
+            {".",".","g",".","g",".","."},
+            {"g","g","g","g","g","g","g"}
         };
 
         public static void Main(string[] args)
@@ -37,8 +37,7 @@ namespace TestApp
         public static int colliding = 0;
         public static void onLoad()
         {
-            Game.CameraPosition.x += 200;
-            
+            Game.CameraPosition.x -= 200;
 
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -46,7 +45,7 @@ namespace TestApp
                 {
                     if (map[j, i] == "g")
                     {
-                        new SpriteObject(new Vector2(50, 50), new Vector2(i * 50, j * 50), "Assets/Wall.png", "Wall");
+                        new ShapeObject(new Vector2(50, 50), new Vector2(i * 50, j * 50), "Wall", Color.IndianRed, Shape.Rectangle);
                     }
                     if (map[j, i] == "c")
                     {
@@ -56,9 +55,11 @@ namespace TestApp
             }
         }
 
-        static SpriteObject player = new SpriteObject(new Vector2(27.2f, 30.6f), new Vector2(210, 300), "Assets/Player.png", "Player");
+        static SpriteObject player = new SpriteObject(new Vector2(27.2f, 30.6f), new Vector2(155, 250), "Assets/Player.png", "Player");
 
-        static float speed = 2f;
+        static float speed = 3f;
+        static float gravity = -0.5f;
+        static float vSpd = 0;
 
         public static void onDraw()
         {
@@ -68,23 +69,29 @@ namespace TestApp
         {
             int hMove = Game.toInt(Input.D) - Game.toInt(Input.A);
             float hSpd = hMove * speed;
-            int vMove = Game.toInt(Input.W) - Game.toInt(Input.S);
-            float vSpd = vMove * speed;
+
+            vSpd += gravity;
+
+            if (Input.SPACE && player.isColliding("Wall", new Vector2(player.position.x, player.position.y - vSpd)))
+            {
+                vSpd = 9;
+            }
 
             if (player.isColliding("Wall", new Vector2(player.position.x+hSpd,player.position.y)))
             {
                 hSpd = 0;
             }
-            else if(player.isColliding("Wall", new Vector2(player.position.x, player.position.y - vSpd)))
+            if(player.isColliding("Wall", new Vector2(player.position.x, player.position.y - vSpd)))
             {
                 vSpd = 0;
             }
             player.position.x += hSpd;
+            Game.CameraPosition.x += hSpd;
             player.position.y -= vSpd;
 
             if (player.isColliding("Collectable", player.position))
             {
-                player.CollisionObject.Destroy();
+                player.SprCollisionObject.Destroy();
             }
         }
     }

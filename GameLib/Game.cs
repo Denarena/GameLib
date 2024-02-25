@@ -22,6 +22,8 @@ namespace GameLib
         internal static Action user_loadFunc, user_DrawFunc, user_UpdateFunc;
         public static Color BGColor;
 
+        
+
         public static Keys KeyPresses;
 
         public static Vector2 CameraPosition = new Vector2();

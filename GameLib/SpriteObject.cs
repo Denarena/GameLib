@@ -13,7 +13,8 @@ namespace GameLib
         public Vector2 position, size;
         public String name, directory;
         public Bitmap sprite;
-        public SpriteObject CollisionObject;
+        public SpriteObject SprCollisionObject;
+        public ShapeObject ShpCollisionObject;
 
         public SpriteObject(Vector2 size, Vector2 position, String directory, String name)
         {
@@ -36,7 +37,18 @@ namespace GameLib
         {
             foreach (SpriteObject b in Game.sprObjects)
             {
-                CollisionObject = b;
+                SprCollisionObject = b;
+                if (b.name == name)
+                {
+                    if (position.x < b.position.x + b.size.x &&
+                        position.x + size.x > b.position.x &&
+                        position.y < b.position.y + b.size.y &&
+                        position.y + size.y > b.position.y) { return true; }
+                }
+            }
+            foreach (ShapeObject b in Game.shpObjects)
+            {
+                ShpCollisionObject = b;
                 if (b.name == name)
                 {
                     if (position.x < b.position.x + b.size.x &&

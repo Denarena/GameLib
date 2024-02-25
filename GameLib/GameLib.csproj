@@ -50,6 +50,7 @@
     <Compile Include="screen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Shape.cs" />
     <Compile Include="ShapeObject.cs" />
     <Compile Include="SpriteObject.cs" />
     <Compile Include="Vector2.cs" />

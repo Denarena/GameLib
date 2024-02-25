@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 using System.Runtime.CompilerServices;
+using System.Drawing.Drawing2D;
 
 namespace GameLib
 {
@@ -20,7 +21,8 @@ namespace GameLib
 
         public static void SetCamPosition(Vector2 CameraPosition)
         {
-            cameraPosition = CameraPosition;
+            cameraPosition.x = -CameraPosition.x;
+            cameraPosition.y = -CameraPosition.y;
         }
 
         public Window(Vector2 Size, String Title)
@@ -47,7 +49,7 @@ namespace GameLib
                         Game.OnDraw();
                         Wind.BeginInvoke((MethodInvoker)delegate { Wind.Refresh(); });
                         Game.OnUpdate();
-                        Thread.Sleep(1);
+                        Thread.Sleep(2);
                     }
                     catch
                     {
@@ -86,16 +88,25 @@ namespace GameLib
         private void Renderer(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            
             g.Clear(BGColor);
-
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.TranslateTransform(cameraPosition.x, cameraPosition.y);
 
-            foreach (ShapeObject shape in Game.shpObjects)
-            {
-                g.FillRectangle(new SolidBrush(shape.color), shape.position.x, shape.position.y, shape.size.x, shape.size.y);
-            }
             try
             {
+                foreach (ShapeObject shape in Game.shpObjects)
+                {
+                    if (shape.shape == Shape.Rectangle)
+                    {
+                        g.FillRectangle(new SolidBrush(shape.color), shape.position.x, shape.position.y, shape.size.x, shape.size.y);
+                    }
+                    else if(shape.shape == Shape.Circle)
+                    {
+                        return;
+                    }
+                }
+
                 foreach (SpriteObject sprite in Game.sprObjects)
                 {
                     g.DrawImage(sprite.sprite, sprite.position.x, sprite.position.y, sprite.size.x, sprite.size.y);
